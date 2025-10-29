@@ -9,5 +9,7 @@ export async function createTask(newTask) {
 }
 
 export async function getTaskById(id) {
-  return taskRepository.findById(id);
+  const tasks = await taskRepository.findAll();
+  const task = tasks.find((t) => t.id === id);
+  return task || null;
 }
