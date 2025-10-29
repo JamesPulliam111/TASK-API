@@ -1,5 +1,13 @@
-description: Invalid input
+description: Invalid input or missing required field
 content:
   application/json:
     schema:
-      $ref: ../schemas/ValidationError.yaml
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+      example:
+        errors:
+          - Title is required

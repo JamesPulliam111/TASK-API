@@ -1,5 +1,10 @@
-description: Task not found
+description: Resource not found
 content:
   application/json:
     schema:
-      $ref: ../schemas/NotFoundError.yaml
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: Task not found

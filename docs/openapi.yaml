@@ -2,19 +2,19 @@ openapi: 3.1.0
 info:
   title: Task API
   version: 1.0.0
-
 servers:
   - url: http://localhost:3000
-    description: Local development server
-  - url: https://task-api-pg8a.onrender.com
-    description: Production server on Render
-
-tags:
-  - name: Tasks
-    description: Task-related endpoints
-
 paths:
   /tasks:
-    $ref: paths/tasks.yaml
+    $ref: ./paths/tasks.yaml
   /tasks/{id}:
-    $ref: paths/tasks-id.yaml
+    $ref: ./paths/tasks-id.yaml
+components:
+  schemas:
+    Task:
+      $ref: ./components/schemas/Task.yaml
+  responses:
+    BadRequest:
+      $ref: ./components/responses/BadRequest.yaml
+    NotFound:
+      $ref: ./components/responses/NotFound.yaml

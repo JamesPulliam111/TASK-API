@@ -2,31 +2,15 @@ get:
   summary: List all tasks
   tags:
     - Tasks
-  parameters:
-    - name: completed
-      in: query
-      required: false
-      description: Filter tasks by completion status
-      schema:
-        type: boolean
-        example: true
-    - name: limit
-      in: query
-      required: false
-      description: Maximum number of tasks to return
-      schema:
-        type: integer
-        example: 10
   responses:
     '200':
-      description: OK
+      description: A list of tasks
       content:
         application/json:
           schema:
             type: array
             items:
               $ref: ../components/schemas/Task.yaml
-
 post:
   summary: Create a new task
   tags:
@@ -39,7 +23,7 @@ post:
           $ref: ../components/schemas/Task.yaml
   responses:
     '201':
-      description: Task created successfully
+      description: Task created
       content:
         application/json:
           schema:

@@ -4,36 +4,15 @@ info:
   version: 1.0.0
 servers:
   - url: http://localhost:3000
-    description: Local development server
-  - url: https://task-api-pg8a.onrender.com
-    description: Production server on Render
-tags:
-  - name: Tasks
-    description: Task-related endpoints
 paths:
   /tasks:
     get:
       summary: List all tasks
       tags:
         - Tasks
-      parameters:
-        - name: completed
-          in: query
-          required: false
-          description: Filter tasks by completion status
-          schema:
-            type: boolean
-            example: true
-        - name: limit
-          in: query
-          required: false
-          description: Maximum number of tasks to return
-          schema:
-            type: integer
-            example: 10
       responses:
         '200':
-          description: OK
+          description: A list of tasks
           content:
             application/json:
               schema:
@@ -52,7 +31,7 @@ paths:
               $ref: '#/components/schemas/Task'
       responses:
         '201':
-          description: Task created successfully
+          description: Task created
           content:
             application/json:
               schema:
@@ -98,32 +77,35 @@ components:
         completed:
           type: boolean
           example: false
-    ValidationError:
-      type: object
-      properties:
-        error:
-          type: string
-          example: Validation failed
-        details:
-          type: array
-          items:
-            type: string
-    NotFoundError:
-      type: object
-      properties:
-        error:
-          type: string
-          example: Task not found
+      required:
+        - title
+      example:
+        id: 1
+        title: Buy groceries
+        completed: false
   responses:
     BadRequest:
-      description: Invalid input
+      description: Invalid input or missing required field
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ValidationError'
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: string
+            example:
+              errors:
+                - Title is required
     NotFound:
-      description: Task not found
+      description: Resource not found
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/NotFoundError'
+            type: object
+            properties:
+              message:
+                type: string
+            example:
+              message: Task not found

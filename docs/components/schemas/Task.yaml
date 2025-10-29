@@ -10,3 +10,9 @@ properties:
   completed:
     type: boolean
     example: false
+required:
+  - title
+example:
+  id: 1
+  title: Buy groceries
+  completed: false
