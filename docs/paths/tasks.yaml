@@ -26,8 +26,9 @@ get:
             type: array
             items:
               $ref: ../components/schemas/Task.yaml
+
 post:
-  summary: Create a new tasks
+  summary: Create a new task
   tags:
     - Tasks
   requestBody:
